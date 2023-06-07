@@ -16,6 +16,18 @@ var records = [
   },
 ];
 
+exports.createUser = function (user) {
+  return new Promise((resolve, reject) => {
+    const newUser = {
+      id: getNewId(records),
+      ...user,
+    };
+    records = [newUser, ...records];
+    console.log(records);
+    resolve(newUser);
+  });
+};
+
 exports.findById = function (id, cb) {
   process.nextTick(function () {
     var idx = id - 1;
